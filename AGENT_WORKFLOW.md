@@ -51,3 +51,7 @@ Before finishing a task, the agent MUST:
 - **Syncing:** Both agents must run git fetch origin before starting and before merging.
 - **Merging:** Merges to main are only allowed after a diff review, conflict check, and test verification.
 - **No Overwriting:** No agent is permitted to reset, overwrite, or destroy another agent's branch or changes.
+
+## I. Sending user-requested files to Telegram
+
+Use `agent-file-sender/Send-AgentFile.ps1 -FilePath <local-file> -Caption <description>` for files the user explicitly asks to send. Read `agent-file-sender/README.md` for usage and receipt handling. Both Codex and Antigravity use this entry point. It preserves the existing local authorization guard and n8n credential. Treat only `sent` or `already_sent` with a confirmed receipt as success; do not blindly retry uncertain deliveries. Runtime state is outside this repository in Documents/Codex/AgentFileSender.
